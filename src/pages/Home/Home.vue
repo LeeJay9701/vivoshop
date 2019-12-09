@@ -44,7 +44,7 @@ export default {
     new Swiper('.swiper-container', {
       loop: true, // 循环模式选项
       autoplay: {
-        delay: 1000,
+        delay: 2000,
         stopOnLastSlide: false,
         // 操作swiper之后，是否禁止autoplay
         disableOnInteraction: false,
@@ -53,6 +53,8 @@ export default {
       pagination: {
         el: '.swiper-pagination',
       },
+      // 切换动画
+      effect : 'fade'
     })
   }
 }
