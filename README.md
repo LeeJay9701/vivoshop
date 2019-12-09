@@ -1,4 +1,4 @@
-# my-vivo-shop
+# my-vivo-shop Vue
 
 ## Project setup
 ```
