@@ -46,7 +46,8 @@ export default {
       autoplay: {
         delay: 1000,
         stopOnLastSlide: false,
-        disableOnInteraction: true,
+        // 操作swiper之后，是否禁止autoplay
+        disableOnInteraction: false,
       },
       // 如果需要分页器
       pagination: {
