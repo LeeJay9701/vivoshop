@@ -29,34 +29,49 @@ import Swiper from 'swiper';
 import 'swiper/css/swiper.css'
 // 引入ShopList组件
 import ShopList from "../../components/ShopList/ShopList";
+<<<<<<< HEAD:src/page/Home/Home.vue
 // 引入HomeProduct产品组件文件
 import HomeProduct from './HomeProduct/HomeProduct';
 // import { reqGetGoods } from '../../api/index'
+=======
+import Header from '../../components/Header/Header';
+// 引入HomeProduct产品组件文件
+import HomeProduct from './HomeProduct/HomeProduct';
+
+>>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee:src/pages/Home/Home.vue
 export default {
   name: 'Home',
   // 注册组件使用
   components: {
     ShopList,
+<<<<<<< HEAD:src/page/Home/Home.vue
     HomeProduct
   },
   data () {
     return {
       swiperImgArr: []
     }
+=======
+    Header,
+    HomeProduct
+>>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee:src/pages/Home/Home.vue
   },
   // 界面加载之后
   mounted () {
     new Swiper('.swiper-container', {
       loop: true, // 循环模式选项
       autoplay: {
-        delay: 1000,
+        delay: 2000,
         stopOnLastSlide: false,
-        disableOnInteraction: true,
+        // 操作swiper之后，是否禁止autoplay
+        disableOnInteraction: false,
       },
       // 如果需要分页器
       pagination: {
         el: '.swiper-pagination',
       },
+      // 切换动画
+      effect : 'fade'
     })
   }
 }

@@ -1,8 +1,9 @@
 import {
-  Random,
+
   mock
 } from 'mockjs';
 
+<<<<<<< HEAD
 // let make = function (n, name) {
 //   var arr = [];
 //   for (let i = 0; i < n; i++) {
@@ -12,6 +13,8 @@ import {
 // }
 
 
+=======
+>>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee
 const info = mock({
   'goods|6': [{
     'id|+1': 1,
