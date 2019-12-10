@@ -64,7 +64,7 @@
 </template>
 <script>
 export default {
-  name: 'ShopList'
+  name: 'ShoppingList'
 }
 </script>
 <style scoped>

@@ -4,6 +4,7 @@ import {
 } from 'mockjs';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // let make = function (n, name) {
 //   var arr = [];
 //   for (let i = 0; i < n; i++) {
@@ -15,6 +16,8 @@ import {
 
 =======
 >>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee
+=======
+>>>>>>> 6839e85d5ad0d7328c2978de0356dbd10852dc06
 const info = mock({
   'goods|6': [{
     'id|+1': 1,

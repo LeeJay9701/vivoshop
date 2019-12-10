@@ -19,7 +19,10 @@ Vue.use(Vant);
 import router from './router'
 // 引入mock
 import './mock/index';
+<<<<<<< HEAD
 >>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee
+=======
+>>>>>>> 6839e85d5ad0d7328c2978de0356dbd10852dc06
 Vue.config.productionTip = false
 
 

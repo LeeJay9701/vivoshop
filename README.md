@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # shop
 =======
 # my-vivo-shop Vue
 >>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee
+=======
+# my-vivo-shop Vue
+>>>>>>> 6839e85d5ad0d7328c2978de0356dbd10852dc06
 
 ## Project setup
 ```

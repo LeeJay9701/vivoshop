@@ -45,6 +45,7 @@ export default {
   components: {
     ShopList,
 <<<<<<< HEAD:src/page/Home/Home.vue
+<<<<<<< HEAD:src/page/Home/Home.vue
     HomeProduct
   },
   data () {
@@ -55,6 +56,10 @@ export default {
     Header,
     HomeProduct
 >>>>>>> 5f42f98b18b3df5decb3eabef042c1eacaf1b7ee:src/pages/Home/Home.vue
+=======
+    Header,
+    HomeProduct
+>>>>>>> 6839e85d5ad0d7328c2978de0356dbd10852dc06:src/pages/Home/Home.vue
   },
   // 界面加载之后
   mounted () {
