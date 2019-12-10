@@ -3,13 +3,13 @@ import {
   mock
 } from 'mockjs';
 
-let make = function (n, name) {
-  var arr = [];
-  for (let i = 0; i < n; i++) {
-    arr.push(Random[name]())
-  }
-  return arr;
-}
+// let make = function (n, name) {
+//   var arr = [];
+//   for (let i = 0; i < n; i++) {
+//     arr.push(Random[name]())
+//   }
+//   return arr;
+// }
 
 
 const info = mock({
@@ -403,12 +403,21 @@ const news = mock({
   ],
 })
 
+const swiperImgArr = mock({
+  'swipeImages|5-7': [{
+    img: Random.image('200*200', '@color')
+  }]
+})
+
+
+
 const all = Object.assign({}, goods, peijian)
 
 
 
-mock('/api/info', 'get', info)
-mock('/api/goods', 'get', goods)
-mock('/api/peijian', 'get', peijian)
-mock('/api/all', 'get', all)
-mock('/api/news', 'get', news)
+mock('/info', 'get', info)
+mock('/goods', 'get', goods)
+mock('/peijian', 'get', peijian)
+mock('/all', 'get', all)
+mock('/news', 'get', news)
+mock('/api/swiper_home', 'get', swiperImgArr)
