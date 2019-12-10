@@ -1,16 +1,7 @@
 import {
-  Random,
+
   mock
 } from 'mockjs';
-
-let make = function (n, name) {
-  var arr = [];
-  for (let i = 0; i < n; i++) {
-    arr.push(Random[name]())
-  }
-  return arr;
-}
-
 
 const info = mock({
   'goods|6': [{

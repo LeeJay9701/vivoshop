@@ -18,7 +18,7 @@
     </div>
     <!-- 商品导航栏 -->
     <ShopList />
-
+    <HomeProduct />
   </div>
 </template>
 <script>
@@ -31,13 +31,16 @@ import 'swiper/css/swiper.css'
 // 引入ShopList组件
 import ShopList from "../../components/ShopList/ShopList";
 import Header from '../../components/Header/Header';
+// 引入HomeProduct产品组件文件
+import HomeProduct from './HomeProduct/HomeProduct';
 
 export default {
   name: 'Home',
   // 注册组件使用
   components: {
     ShopList,
-    Header
+    Header,
+    HomeProduct
   },
   // 界面加载之后
   mounted () {
