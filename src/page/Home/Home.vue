@@ -2,29 +2,22 @@
   <div class="homeWith">
     <div class="official"></div>
     <div class="home-swiper ">
-      <van-swipe :autoplay="3000"
+      <!-- <van-swipe :autoplay="3000"
                  indicator-color="white">
         <div v-for="(swiperimg,index) in swiperImgArr.swipeImages"
              :key="index">
           <van-swipe-item>
             <img :src="swiperimg.img"
                  alt="">
-          </van-swipe-item>
-        </div>
-
+          </van-swipe-item> -->
     </div>
-    <!--
-                  商品导航栏
-                  -->
-    <ShopList />
-
   </div>
 </template>
 <script>
 // 引入ShopList组件
-import ShopList from "../../components/ShopList/ShopList.vue";
+// import ShopList from "../../components/ShopList/ShopList.vue";
 // import Header from '../../components/Header/Header';
-import { reqSwiperImgArr } from '../../api/index'
+// import { reqSwiperImgArr } from '../../api/index'
 export default {
   name: 'Home',
   // 注册组件使用
@@ -34,13 +27,14 @@ export default {
     }
   },
   components: {
-    ShopList
+    // ShopList
   },
   // 界面加载之后
   async mounted () {
-    const swiperImg = await reqSwiperImgArr()
-    window.console.log(swiperImg.swipeImages)
-    this.swiperImgArr = swiperImg
+    this.$store.dispatch('user/authUser')
+    // const swiperImg = await reqSwiperImgArr()
+    // window.console.log(swiperImg.swipeImages)
+    // this.swiperImgArr = swiperImg
 
     // this.$nextTick(() => {
     //   new Swiper('.swiper-container', {

@@ -4,6 +4,7 @@
              @click="goLogin">
       <p>{{userName}}</p>
     </van-row>
+    <van-divider content-position="left">资产</van-divider>
     <van-row type="flex"
              justify="space-around"
              style="text-align:center">
@@ -18,6 +19,13 @@
         <p>积分</p>
       </van-col>
     </van-row>
+    <van-divider content-position="left">订单</van-divider>
+    <van-grid :gutter="10">
+      <van-grid-item v-for="value in 4"
+                     :key="value"
+                     icon="photo-o"
+                     text="文字" />
+    </van-grid>
   </div>
 </template>
 
@@ -41,12 +49,13 @@ export default {
     }
   },
   async mounted () {
-    await reqAutoLogin()
     const loginUser = getCookie('userName')
     if (loginUser) {
       this.isLogin = true
       this.userName = loginUser
+      window.console.log(this.userName)
     }
+    await reqAutoLogin()
   }
 
 }
@@ -59,6 +68,7 @@ export default {
   line-height 100px
   margin-bottom 10px
   border-bottom 1px solid #ccc
+  background linear-gradient(left bottom, #4a90e2, #86b0ed)
 .yuBox
   border 1px solid #ccc
 </style>

@@ -2,7 +2,10 @@
   <div>
     <van-nav-bar :title="titlePath"
                  @click-left="onClickLeft"
-                 @click-right="onClickRight" />
+                 @click-right="onClickRight">
+      <van-icon name="arrow-left"
+                slot="left" />
+    </van-nav-bar>
   </div>
 </template>
 
@@ -22,7 +25,9 @@ export default {
   },
   methods: {
     onClickLeft () {
-      Toast('返回');
+      // Toast('返回');
+      window.console.log(this.$route.path)
+      this.$router.back()
     },
     onClickRight () {
       Toast('按钮');

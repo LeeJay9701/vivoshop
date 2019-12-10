@@ -1,6 +1,8 @@
 <template>
   <div class="login-box">
-    <van-icon name="close"
+
+    <van-icon name="arrow-left"
+              sole="left"
               @click="$router.back()" />
     <form class="box"
           @submit.prevent="submitForm">
@@ -85,8 +87,8 @@ export default {
           const result = await reqLogin({ account, password })
           if (result.status === 0) {
             // 登录成功
+
             Notify({ type: 'success', message: result.msg });
-            window.console.log(1)
             this.$router.back()
           } else {
             // 登录失败
