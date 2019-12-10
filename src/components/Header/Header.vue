@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <van-nav-bar :title="titlePath"
-                 @click-left="onClickLeft"
-                 @click-right="onClickRight">
-      <van-icon name="arrow-left"
-                slot="left" />
-    </van-nav-bar>
-  </div>
+  <van-nav-bar class="titleHeader"
+               :title="titlePath"
+               @click-left="onClickLeft"
+               @click-right="onClickRight"
+               style="color:white">
+    <van-icon name="arrow-left"
+              slot="left" />
+  </van-nav-bar>
+
 </template>
 
 <script>
@@ -26,7 +27,6 @@ export default {
   methods: {
     onClickLeft () {
       // Toast('返回');
-      window.console.log(this.$route.path)
       this.$router.back()
     },
     onClickRight () {
@@ -37,4 +37,7 @@ export default {
 </script>
 
 <style  scoped>
+.titleHeader {
+  background-color: rgb(29, 28, 28);
+}
 </style>

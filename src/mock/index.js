@@ -409,15 +409,19 @@ const swiperImgArr = mock({
   }]
 })
 
+const category = mock(['Xplay', 'X系列', 'Y系列', '保护膜', '耳机音响'])
 
+// const all = Object.assign({}, goods, peijian, category)
+const all = mock({
+  phone: goods,
+  peijian,
+  category
+})
 
-const all = Object.assign({}, goods, peijian)
-
-
-
-mock('/info', 'get', info)
-mock('/goods', 'get', goods)
-mock('/peijian', 'get', peijian)
-mock('/all', 'get', all)
-mock('/news', 'get', news)
+mock('/api/info', 'get', info)
+mock('/api/goods', 'get', goods)
+mock('/api/peijian', 'get', peijian)
+mock('/api/all', 'get', all)
+mock('/api/news', 'get', news)
 mock('/api/swiper_home', 'get', swiperImgArr)
+mock('/api/category', 'get', category)

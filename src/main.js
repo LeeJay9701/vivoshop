@@ -9,24 +9,12 @@ import './mock/index'
 import store from './store/index'
 // 引入表单验证
 import './veevalidate'
-import {
-  Row,
-  Col,
-  Icon,
-  Tab,
-  Tabs,
-  Tabbar,
-  TabbarItem,
-  NavBar,
-  Swipe,
-  SwipeItem,
-  Grid,
-  Divider,
-  GridItem
-} from 'vant';
+import Vant from 'vant';
+import 'vant/lib/index.css';
 
-Vue.use(Row).use(Col).use(Icon).use(Tab).use(Tabs).use(Tabbar).use(TabbarItem).use(NavBar).use(Swipe).use(SwipeItem).use(Divider).use(Grid).use(GridItem);
+Vue.use(Vant);
 Vue.config.productionTip = false
+
 
 new Vue({
   router,

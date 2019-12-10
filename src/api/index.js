@@ -42,9 +42,9 @@ export const reqAutoLogin = () => ajax({
 })
 
 //请求首页轮播图
-export const reqSwiperImgArr = () => ajax({
+export const reqGetGoods = () => ajax({
   method: 'get',
-  url: url + '/swiper_home'
+  url: url + '/all'
 })
 // //查询商品列表数据
 // export const reqGetGoods = ({

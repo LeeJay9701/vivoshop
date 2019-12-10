@@ -1,12 +1,9 @@
 <template>
   <div class="login-box">
-
-    <van-icon name="arrow-left"
-              sole="left"
-              @click="$router.back()" />
     <form class="box"
           @submit.prevent="submitForm">
-      <h1>{{isRegister?'注册':'登录'}}</h1>
+      <p style="height:20px"></p>
+      <p>{{isRegister?'注册':'登录'}}</p>
       <input type="text"
              name="name"
              v-if="isRegister"
@@ -72,7 +69,7 @@ export default {
           const result = await reqRegister({ account, password, rePassword, name })
           if (result.status === 0) {
             // 注册成功
-            Notify(result.msg)
+            Notify({ type: 'success', message: result.msg })
             window.console.log(2)
             // this.$router.back()
           } else {
@@ -87,7 +84,8 @@ export default {
           const result = await reqLogin({ account, password })
           if (result.status === 0) {
             // 登录成功
-
+            window.console.log(result)
+            this.$store.commit('user/loginIn', result.data)
             Notify({ type: 'success', message: result.msg });
             this.$router.back()
           } else {
@@ -104,25 +102,17 @@ export default {
 
 <style  scoped>
 .login-box {
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: sans-serif;
-  background: #5890c7;
+  background: linear-gradient(left bottom, #4a90e2, #86b0ed);
 }
 
 .box {
   width: 100%;
-  height: 530px;
-  padding: 40px 0;
-  /* position: absolute;
-  top: 50%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
-  /* border: 1px solid rgb(255, 115, 0); */
+  /* margin: 20px 0; */
   border-radius: 10px;
-  background-color: #3d3c3c;
   text-align: center;
   border-radius: 10px;
 }
@@ -157,7 +147,7 @@ export default {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #3498db;
+  border: 2px solid #0f354e;
   padding: 14px 10px;
   width: 200px;
   outline: none;
@@ -169,7 +159,7 @@ export default {
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
   width: 280px;
-  border-color: #2ecc71;
+  border-color: #852ecc;
 }
 
 .box input[type="submit"] {
@@ -178,7 +168,7 @@ export default {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #2ecc71;
+  border: 2px solid #722ecc;
   padding: 14px 40px;
   outline: none;
   color: white;
@@ -195,7 +185,6 @@ export default {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #3498db;
   padding: 14px 10px;
   width: 200px;
   outline: none;

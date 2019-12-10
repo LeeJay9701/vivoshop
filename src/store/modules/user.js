@@ -3,14 +3,15 @@
 import {
   reqAutoLogin
 } from "../../api/index";
-import * as Cookies from "js-cookie"
+import {
+  delCookie
+} from '../../util/cookie'
 
 const state = {
   loginState: {
     loginIn: false,
-    user: {
-      userName: ""
-    }
+    userName: '',
+    userId: ''
   }
 }
 
@@ -18,12 +19,15 @@ const state = {
 const getters = {
   userName: (state) => {
     if (state.loginState.loginIn) {
-      return state.loginState.user.userName
+      return state.loginState.userName
     }
   },
   offLine: (state) => {
     return !state.loginState.loginIn;
-  }
+  },
+  loginIn: (state) => {
+    return state.loginState.loginIn;
+  },
 }
 
 //actions
@@ -34,9 +38,7 @@ const actions = {
   }) {
     return reqAutoLogin().then(res => {
       if (res.Success) {
-        commit('loginIn', {
-          userName: res.Data.UserName
-        });
+        commit('loginIn');
         return true;
       } else {
         commit('loginOut');
@@ -52,23 +54,39 @@ const mutations = {
   //登入状态
   loginIn(state, user) {
     state.loginState.loginIn = true;
-    state.loginState.user = user;
-    Cookies.set('loginState', state.loginState, {
-      expires: 1
-    });
+    const {
+      userName,
+      userId
+    } = user
+    if (userName && userId) {
+      state.loginState.userName = userName;
+      state.loginState.userId = userId;
+      window.localStorage.setItem('user', JSON.stringify({
+        userId,
+        userName,
+        loginIn: true
+      }))
+    }
   },
   //登出状态
   loginOut(state) {
     state.loginState.loginIn = false;
-    state.loginState.user = {};
-    Cookies.remove('loginState');
+    state.loginState.userName = '';
+    state.loginState.userId = '';
+    delCookie('userId');
+    delCookie('userName')
+    window.localStorage.setItem('user', JSON.stringify({
+      userId: '',
+      userName: '',
+      loginIn: false
+    }))
   },
-  syncLoginState(state) {
-    let cookieState = Cookies.getJSON('loginState');
-    if (cookieState) {
-      state.loginState = cookieState;
-    }
-  }
+  // syncLoginState(state) {
+  //   let userName = Cookies.getJSON('userName');
+  //   if (userName) {
+  //     state.loginState.userName = userName;
+  //   }
+  // }
 }
 
 export default {

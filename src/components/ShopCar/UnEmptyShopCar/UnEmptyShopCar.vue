@@ -1,0 +1,147 @@
+<template>
+  <div class="unEmptyShopCar">
+    <van-checkbox-group v-model="result"
+                        @change="checkBoxChange"
+                        ref="checkboxGroup">
+      <van-card :num="item.num"
+                :price="item.price"
+                :title="item.name"
+                v-for="(item) in shopCarGoods"
+                :key="item.id"
+                :thumb="item.images">
+        <div slot="tags">
+          <van-icon name="delete"
+                    class="delIcon"
+                    size="1.5em"
+                    @click="handleDel(item.id)" />
+          <van-tag plain
+                   type="danger">
+            <van-checkbox :name="item.id"></van-checkbox>
+          </van-tag>
+        </div>
+        <div slot="footer">
+          <van-stepper />
+        </div>
+      </van-card>
+    </van-checkbox-group>
+    <van-submit-bar :price="totalPrice"
+                    :loading="loading"
+                    button-text="结算"
+                    @submit="onSubmit">
+      <van-checkbox v-model="allChecked"
+                    @click="toggleAll">全选</van-checkbox>
+    </van-submit-bar>
+  </div>
+
+</template>
+<script>
+import Vue from 'vue';
+
+import { NavBar, SubmitBar, Checkbox, CheckboxGroup, Card, Tag, Button, Stepper, Icon } from 'vant';
+Vue.use(NavBar);
+Vue.use(SubmitBar);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
+Vue.use(Checkbox).use(CheckboxGroup);
+Vue.use(Card);
+Vue.use(Tag);
+Vue.use(Button);
+Vue.use(Stepper);
+Vue.use(Icon);
+
+export default {
+  name: 'UnEmptyShopCar',
+  data () {
+    return {
+      // 全选框是否选中
+      allChecked: false,
+      // 加载中动画
+      loading: false,
+      // 已选中商品
+      result: [],
+      shopCarGoods: [],
+      // 初始化总额
+      totalPrice: 0
+    }
+  },
+  methods: {
+    // 结算点击事件
+    onSubmit () {
+
+    },
+    // 删除图标点击事件
+    handleDel (id) {
+      this.shopCarGoods = this.shopCarGoods.filter(item => id !== item.id)
+    },
+    toggleAll () {
+      // this.allChecked = !this.allChecked;
+      if (this.result.length >= 0 && this.result.length < 6) {
+        this.$refs.checkboxGroup.toggleAll(true);
+      } else {
+        this.$refs.checkboxGroup.toggleAll(false);
+      }
+    },
+    // 复选框点击事件
+    checkBoxChange () {
+      if (this.result.length === this.shopCarGoods.length) {
+        this.allChecked = true;
+      } else {
+        this.allChecked = false;
+      }
+    }
+  },
+  watch: {
+    // 深度监视result，当选中的内容发生变化，总额也要发生变化
+    result: {
+      deep: true,
+      handler () {
+        let totalPrice = 0;
+        // 通过result中存储的id值找到对应的产品信息
+        this.result.map(resultItem => {
+          this.shopCarGoods.map(goodsItem => {
+            if (resultItem === goodsItem.id) {
+              totalPrice += goodsItem.price * goodsItem.num
+            }
+          })
+        }, 0)
+        this.totalPrice = totalPrice * 100
+      }
+    }
+  },
+}
+</script>
+<style scoped lang="stylus" rel="stylesheet/stylus">
+.unEmptyShopCar
+  margin-top 46px
+  .van-checkbox-group
+    .van-card
+      padding-left 50px
+      .van-card__header
+        .van-card__content
+          // 删除图标
+          .delIcon
+            position absolute
+            right 0
+            top 0
+          .van-card__title
+            font-size 15px
+          .van-card__bottom
+            line-height 40px
+            .van-card__price
+              font-size 14px
+            .van-card__num
+              font-size 14px
+          // 复选框小圆点
+          .van-tag
+            position absolute
+            left -135px
+            top 30px
+            &.van-tag--danger
+              color rgba(0, 0, 0, 0)
+              background-color rgba(0, 0, 0, 0)
+  .van-submit-bar
+    .van-submit-bar__bar
+      // 全选
+      .van-checkbox
+        margin-left 10px
+</style>

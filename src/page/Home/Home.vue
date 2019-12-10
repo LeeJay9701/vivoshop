@@ -1,55 +1,63 @@
 <template>
   <div class="homeWith">
     <div class="official"></div>
-    <div class="home-swiper ">
-      <!-- <van-swipe :autoplay="3000"
-                 indicator-color="white">
-        <div v-for="(swiperimg,index) in swiperImgArr.swipeImages"
-             :key="index">
-          <van-swipe-item>
-            <img :src="swiperimg.img"
-                 alt="">
-          </van-swipe-item> -->
+    <div class="swiper-container home-swiper ">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="../../static/img/vivo_bj_01.jpg"
+               alt="小米手机"></div>
+        <div class="swiper-slide"><img src="../../static/img/vivo_bj_02.jpg"
+               alt="小米手机"></div>
+        <div class="swiper-slide"><img src="../../static/img/vivo_bj_03.jpg"
+               alt="小米手机"></div>
+        <div class="swiper-slide"><img src="../../static/img/vivo_bj_04.jpg"
+               alt="小米手机"></div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
     </div>
+    <ShopList />
+    <HomeProduct />
   </div>
 </template>
 <script>
 // 引入ShopList组件
-// import ShopList from "../../components/ShopList/ShopList.vue";
-// import Header from '../../components/Header/Header';
-// import { reqSwiperImgArr } from '../../api/index'
+// 引入Swiper
+import Swiper from 'swiper';
+// 引入Swiper样式文件
+// import 'swiper/dist/css/swiper.css'
+// 引入的包一样，这里我们引入的需要把dist删了
+import 'swiper/css/swiper.css'
+// 引入ShopList组件
+import ShopList from "../../components/ShopList/ShopList";
+// 引入HomeProduct产品组件文件
+import HomeProduct from './HomeProduct/HomeProduct';
+// import { reqGetGoods } from '../../api/index'
 export default {
   name: 'Home',
   // 注册组件使用
+  components: {
+    ShopList,
+    HomeProduct
+  },
   data () {
     return {
       swiperImgArr: []
     }
   },
-  components: {
-    // ShopList
-  },
   // 界面加载之后
-  async mounted () {
-    this.$store.dispatch('user/authUser')
-    // const swiperImg = await reqSwiperImgArr()
-    // window.console.log(swiperImg.swipeImages)
-    // this.swiperImgArr = swiperImg
-
-    // this.$nextTick(() => {
-    //   new Swiper('.swiper-container', {
-    //     loop: true, // 循环模式选项
-    //     autoplay: {
-    //       delay: 1000,
-    //        stopOnLastSlide: false,
-    //       disableOnInteraction: true,
-    //     },
-    //     // 如果需要分页器
-    //     pagination: {
-    //       el: '.swiper-pagination',
-    //     },
-    //   })
-    // })
+  mounted () {
+    new Swiper('.swiper-container', {
+      loop: true, // 循环模式选项
+      autoplay: {
+        delay: 1000,
+        stopOnLastSlide: false,
+        disableOnInteraction: true,
+      },
+      // 如果需要分页器
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    })
   }
 }
 </script>

@@ -7,8 +7,57 @@
             <img src="../../static/img/shopList_shouji.png"
                  alt="">
           </div>
-        </li>
 
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_chongdian.png"
+                 alt="">
+          </div>
+
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_yinyue.png"
+                 alt="">
+          </div>
+
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_fenlei.png"
+                 alt="">
+          </div>
+
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_fenlei.png"
+                 alt="">
+          </div>
+
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_huanxin.png"
+                 alt="">
+          </div>
+
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_dingzhi.png"
+                 alt="">
+          </div>
+
+        </li>
+        <li>
+          <div>
+            <img src="../../static/img/shopList_suipingbao.png"
+                 alt="">
+          </div>
+
+        </li>
       </ul>
     </div>
   </div>
