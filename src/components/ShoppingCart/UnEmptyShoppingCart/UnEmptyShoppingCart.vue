@@ -1,5 +1,5 @@
 <template>
-  <div class="unEmptyShopCar">
+  <div class="unEmptyShoppingCart">
     <van-checkbox-group v-model="result"
                         @change="checkBoxChange"
                         ref="checkboxGroup">
@@ -38,7 +38,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-import { NavBar, SubmitBar, Checkbox, CheckboxGroup, Card, Tag, Button, Stepper, Icon } from 'vant';
+import { NavBar, SubmitBar, Checkbox, CheckboxGroup, Card, Tag, Button, Stepper, Icon, Toast } from 'vant';
 Vue.use(NavBar);
 Vue.use(SubmitBar);
 Vue.use(Checkbox);
@@ -49,15 +49,17 @@ Vue.use(Tag);
 Vue.use(Button);
 Vue.use(Stepper);
 Vue.use(Icon);
+Vue.use(Toast);
 
 export default {
-  name: 'UnEmptyShopCar',
+  name: 'UnEmptyShoppingCart',
+  props: ['changeEmptyState'],
   data() {
     return {
       // 全选框是否选中
       allChecked: false,
       // 加载中动画
-      loading: false,
+      loading: true,
       // 已选中商品
       result: [],
       shopCarGoods: [],
@@ -68,6 +70,8 @@ export default {
   async created() {
     const result1 = await axios.get('/api/info')
     this.shopCarGoods = result1.data.goods
+    this.shopCarGoods.map(item => item.num = 1);
+    this.loading = false
     // const result2 = await axios.get('/api/goods')
     // console.log(result2.data)
     // const result3 = await axios.get('/api/peijian')
@@ -80,11 +84,23 @@ export default {
   methods: {
     // 结算点击事件
     onSubmit() {
-      console.log('submit')
+      // 如果没有选中商品
+      if (this.result.length <= 0) {
+        return Toast('请选择要购买的商品')
+      }
+      this.$router.push('/settlement')
     },
     // 删除图标点击事件
     handleDel(id) {
-      this.shopCarGoods = this.shopCarGoods.filter(item => id !== item.id)
+      Toast.loading({
+        forbidClick: true,
+        loadingType: 'spinner',
+        onOpened: async () => {
+          this.shopCarGoods = await this.shopCarGoods.filter(item => id !== item.id)
+          // 清除提示框
+          Toast.clear()
+        }
+      });
     },
     toggleAll() {
       // this.allChecked = !this.allChecked;
@@ -113,18 +129,27 @@ export default {
         this.result.map(resultItem => {
           this.shopCarGoods.map(goodsItem => {
             if (resultItem === goodsItem.id) {
-              totalPrice += goodsItem.price * goodsItem.num
+              totalPrice += goodsItem.price * goodsItem.num * 100
             }
           })
         }, 0)
-        this.totalPrice = totalPrice * 100
+        this.totalPrice = totalPrice
+      }
+    },
+    // 深度监视shopCarGoods，当shopCarGoods为空时，将空购物车的页面展示出来
+    shopCarGoods: {
+      deep: true,
+      handler() {
+        if (this.shopCarGoods.length <= 0) {
+          this.$props.changeEmptyState()
+        }
       }
     }
   },
 }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
-.unEmptyShopCar
+.unEmptyShoppingCart
   margin-top 46px
   .van-checkbox-group
     .van-card

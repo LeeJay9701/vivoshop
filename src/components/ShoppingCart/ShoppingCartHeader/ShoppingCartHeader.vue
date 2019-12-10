@@ -9,8 +9,13 @@
   </van-nav-bar>
 </template>
 <script>
+import Vue from 'vue';
+import { NavBar } from 'vant';
+
+Vue.use(NavBar);
+
 export default {
-  name: 'ShopCarHeader',
+  name: 'ShoppingCartHeader',
   data() {
     return {
 
